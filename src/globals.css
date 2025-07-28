@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+:root {
+  --background: #fcfce1;
+  --foreground: #171717;
+  --orangeOne: #ffede0;
+  --orangeTwo: #ffd3b2;
+  --orangeThree: #ff6f00;
+}
+
+* {
+  margin: 4px;
+  /* background-color: var(--background); */
+}
+
+.home{
+  display: flex;
+  flex-direction: row;
+}
