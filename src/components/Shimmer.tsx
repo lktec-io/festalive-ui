@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-import "./Shimmer.css"; // Or add inline styles
+import "../styles/Shimmer.css";
 
 export default function Shimmer() {
   return (

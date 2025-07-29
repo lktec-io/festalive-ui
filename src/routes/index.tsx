@@ -1,9 +1,8 @@
-// /routes/index.tsx
-
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import Shimmer from "../components/Shimmer.tsx";
 
-// const Dashboard = lazy(() => import("../pages/Dashboard.tsx"));
+const Home = lazy(() => import("../pages/Home.tsx"));
 const Tickets = lazy(() => import("../pages/Tickets.tsx"));
 const Promote = lazy(() => import("../pages/Promote.tsx"));
 const Events = lazy(() => import("../pages/Events.tsx"));
@@ -12,9 +11,9 @@ const NotFound = lazy(() => import("../pages/NotFound.tsx"));
 
 export default function Router() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Shimmer />}>
       <Routes>
-        {/* <Route path="/" element={<Dashboard />} /> */}
+        <Route path="/" element={<Home />} />
         <Route path="/tickets" element={<Tickets />} />
         <Route path="/promote" element={<Promote />} />
         <Route path="/notfound" element={<NotFound />} />

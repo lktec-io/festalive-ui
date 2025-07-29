@@ -1,5 +1,4 @@
 "user-client";
-import React from "react";
 import "../../src/components/index.css";
 
 export const ProfileData = [

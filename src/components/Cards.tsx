@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import "../../src/components/index.css";
-import Link from "next/link";
-
+import { Link } from "react-router-dom";
 export const CardData = [
   {
     id: 1,
@@ -38,7 +37,7 @@ export const Card = () => {
   return (
     <div className="card-container">
       {CardData.map((item) => (
-        <Link href={item.link} key={item.id} className="card">
+        <Link to={item.link} key={item.id} className="card">
           <div className="card-content">
             <img
               src={item.iconactive}
@@ -59,7 +58,7 @@ export const Card = () => {
 export const ExtraCard = () => {
   return (
     <div className="card-container">
-      <Link href="/" className="card">
+      <Link to="/" className="card">
         <div className="card-content">
           <img src="/add.svg" alt="" width={32} height={32} />
 

@@ -1,7 +1,7 @@
 "use client";
 import "../../src/components/index.css";
-import React, { useState } from "react";
-import Link from "next/link";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { ProfileCard } from "./ProfileCard";
 
 export const SidebarData = [
@@ -92,16 +92,14 @@ export const Sidebar = () => {
                   onMouseLeave={() => setHoveredId(null)}
                 >
                   <Link
-                    href={item.link}
+                    to={item.link}
                     className="sidebar-items"
                     onClick={() => setActiveId(item.id)}
                   >
                     <div className="sidebar-item">
                       <img
                         src={
-                          isActive || isHovered
-                            ? item.iconactive
-                            : item.icon
+                          isActive || isHovered ? item.iconactive : item.icon
                         }
                         alt={item.title}
                         width={20}
