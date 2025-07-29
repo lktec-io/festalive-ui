@@ -4,7 +4,7 @@ import "../../src/components/index.css";
 export const ProfileData = [
   {
     id: 1,
-    img: "/profile.jpg",
+    img: "../assets/profile.jpg",
     title: "Festalive Studio",
     username: "Seynation Digital",
   },

@@ -1,12 +1,11 @@
 "use client";
-import React from "react";
 import "../../src/components/index.css";
 import { Link } from "react-router-dom";
 export const CardData = [
   {
     id: 1,
-    icon: "/book-image-black.svg",
-    iconactive: "/book-check.svg",
+    icon: "../assets/book-image-black.svg",
+    iconactive: "../assets/book-check.svg",
     title: "Total Events",
     description: "All the Events that you have hosted",
     amount: "30",
@@ -15,8 +14,8 @@ export const CardData = [
 
   {
     id: 2,
-    icon: "/ticket-black.svg",
-    iconactive: "/ticket.svg",
+    icon: "../assets/ticket-black.svg",
+    iconactive: "../assets/ticket.svg",
     title: "Ticket Sales",
     description: "Total Events",
     amount: "744",
@@ -24,8 +23,8 @@ export const CardData = [
   },
   {
     id: 3,
-    icon: "/bankote.svg",
-    iconactive: "/banknote.svg",
+    icon: "../assets/bankote.svg",
+    iconactive: "../assets/banknote.svg",
     title: "Revenue",
     description: "The total amount of money that you have made on all events.",
     amount: "5,0434,050",
@@ -60,7 +59,7 @@ export const ExtraCard = () => {
     <div className="card-container">
       <Link to="/" className="card">
         <div className="card-content">
-          <img src="/add.svg" alt="" width={32} height={32} />
+          <img src="../assets/add.svg" alt="" width={32} height={32} />
 
           <h3>Add Event</h3>
         </div>
