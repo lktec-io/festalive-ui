@@ -20,7 +20,7 @@ const data = [
 
 export const TicketSalesChart = () => {
   return (
-    <div style={{ width: "100%", height: 300 }}>
+    <div style={{ width: "40%", height: 300 }}>
       <ResponsiveContainer>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
