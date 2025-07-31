@@ -39,7 +39,7 @@ export const RevenueComboChart = () => {
   
       }}
     >
-      <h3>Ticket Sales Overtime</h3>
+      <h4 style={{fontWeight:"500"}}>Ticket Sales Overtime</h4>
       <ResponsiveContainer width="70%" height="100%">
         <ComposedChart data={data}>
           <CartesianGrid stroke="#f5f5f5" />

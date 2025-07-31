@@ -37,6 +37,7 @@ export const TicketSalesPie = () => {
   
       }}
     >
+      <h4 style={{fontWeight:"500"}}>Top Events By Revenue</h4>
       <ResponsiveContainer >
         <PieChart>
           <Pie
