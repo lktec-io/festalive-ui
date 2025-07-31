@@ -1,7 +1,9 @@
 import "../globals.css";
+import "../components/index.css";
 import { Sidebar } from "../components/Sidebar";
 import { Card, ExtraCard } from "../components/Cards";
-import { TicketSalesChart } from "../components/TicketSalesChart";
+import { TicketSalesPie } from "./TicketSalesPie";
+import { RevenueComboChart } from "./RevenueComboChart";
 
 export default function Home() {
   return (
@@ -12,9 +14,11 @@ export default function Home() {
           <Card />
           <ExtraCard />
         </div>
-        <div className="charts">
-          <TicketSalesChart />
-          <TicketSalesChart />
+        <div className="other-card">
+          <div className="card-left"></div>
+          <div className="card-right"></div>
+          <RevenueComboChart />
+          <TicketSalesPie />
         </div>
       </div>
     </div>
