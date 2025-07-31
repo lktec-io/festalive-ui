@@ -1,7 +1,7 @@
 "use client";
 import "../../src/components/index.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ProfileCard } from "./ProfileCard";
 
 export const SidebarData = [
@@ -71,7 +71,6 @@ export const SidebarData = [
 ];
 
 export const Sidebar = () => {
-  const [activeId, setActiveId] = useState(1);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
@@ -80,37 +79,35 @@ export const Sidebar = () => {
         <ProfileCard />
         <div className="sidebar-content-container">
           <ul>
-            {SidebarData.map((item) => {
-              const isActive = item.id === activeId;
-              const isHovered = item.id === hoveredId;
-
-              return (
-                <li
-                  key={item.id}
-                  className={isActive ? "activeItem" : ""}
-                  onMouseEnter={() => setHoveredId(item.id)}
-                  onMouseLeave={() => setHoveredId(null)}
+            {SidebarData.map((item) => (
+              <li
+                key={item.id}
+                onMouseEnter={() => setHoveredId(item.id)}
+                onMouseLeave={() => setHoveredId(null)}
+              >
+                <NavLink
+                  to={item.link}
+                  className={({ isActive }) =>
+                    isActive ? "activeItem sidebar-items" : "sidebar-items"
+                  }
                 >
-                  <Link
-                    to={item.link}
-                    className="sidebar-items"
-                    onClick={() => setActiveId(item.id)}
-                  >
-                    <div className="sidebar-item">
-                      <img
-                        src={
-                          isActive || isHovered ? item.iconactive : item.icon
-                        }
-                        alt={item.title}
-                        width={20}
-                        height={20}
-                      />
-                      <span style={{ marginLeft: "10px" }}>{item.title}</span>
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
+                  <div className="sidebar-item">
+                    <img
+                      src={
+                        hoveredId === item.id || 
+                        window.location.pathname === item.link
+                          ? item.iconactive
+                          : item.icon
+                      }
+                      alt={item.title}
+                      width={20}
+                      height={20}
+                    />
+                    <span style={{ marginLeft: "10px" }}>{item.title}</span>
+                  </div>
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

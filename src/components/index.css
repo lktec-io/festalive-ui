@@ -14,6 +14,7 @@
   justify-content: center;
   align-items: flex-start;
   padding: 20px; 
+  margin-left: 248px;
 }
 
 .cards-chart{
@@ -59,9 +60,28 @@ justify-content: center;
 .sidebar {
   background-color: var(--orangeOne);
   width: 248px;
-  height: 98vh;
-  border-radius: 15px;
+  height: 100vh; /* Full height */
+  border-radius: 15px 0 0 15px;
   display: flex;
+  position: fixed; /* Stays pinned */
+  top: 0;
+  left: 0;
+  overflow-y: auto; /* Enables vertical scrolling */
+  scrollbar-width: thin; /* Firefox scrollbar */
+  scrollbar-color: #E66400 transparent; /* Firefox thumb */
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 6px; /* Scrollbar width */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #E66400; /* Thumb color */
+  border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent; /* Track color */
 }
 
 ul {
@@ -77,13 +97,31 @@ li {
   margin: 5px;
   padding-bottom: 5px;
   padding-top: 5px;
-  padding-left: 35px;
-  padding-right: 35px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 5px;
+}
+
+
+.isActive {
+  font-family: "Inter", sans-serif;
+  font-size: small;
+  text-decoration: none;
+  margin: 5px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
   border-radius: 5px;
 }
 
 .activeItem {
   background-color: var(--orangeTwo);
+ 
+}
+
+.isActive{
+  background-color: blue;
 }
 
 li:hover:not(.active) {
@@ -97,12 +135,12 @@ a{
 }
 
 .sidebar-content {
-  flex: 1;                
+  flex: 1;
   display: flex;
-  flex-direction: column;   
-  justify-content: center;  
-  align-items: center;     
-  /* gap: 1rem; */
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  scroll-behavior: smooth;
 }
 
 .sidebar-content-container {
@@ -127,6 +165,8 @@ a{
   align-items: center;
   width: 100%;
 }
+
+
 
 /* SIDE BAR INAISHIA HAPAAAA */
 /* ------------------------ */
@@ -238,4 +278,14 @@ color: #E66400;
 
 .profile-item h6{
 font-size: 10px;
+}
+
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.layout-content {
+  flex: 1;
+  overflow-x: hidden;
 }
