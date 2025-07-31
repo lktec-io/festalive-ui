@@ -22,8 +22,25 @@ const data = [
 
 export const RevenueComboChart = () => {
   return (
-    <div>
-      <ResponsiveContainer>
+    <div
+      style={{
+        marginTop:"27px",
+        width: "100%",
+        height: "300px",
+        display: "flex",
+        fontFamily:"Inter",
+        fontSize:"12px",
+        flexDirection:"column",
+        justifyContent: "start",
+        alignItems: "center",
+        marginLeft:"-30px",
+        marginRight:"0",
+        gap:"0"
+  
+      }}
+    >
+      <h3>Ticket Sales Overtime</h3>
+      <ResponsiveContainer width="70%" height="100%">
         <ComposedChart data={data}>
           <CartesianGrid stroke="#f5f5f5" />
           <XAxis dataKey="month" />

@@ -49,19 +49,13 @@ justify-content: center;
   align-items: flex-start;
 }
 
-.card-left{
+.card-left, .card-right {
   background-color: var(--orangeOne);
   width: 500px;
   height: 350px;
   border-radius: 17px;
 }
 
-.card-right{
-  background-color: var(--orangeOne);
-  width: 500px;
-  height: 350px;
-  border-radius: 17px;
-}
 .sidebar {
   background-color: var(--orangeOne);
   width: 248px;

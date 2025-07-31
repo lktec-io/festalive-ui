@@ -15,10 +15,12 @@ export default function Home() {
           <ExtraCard />
         </div>
         <div className="other-card">
-          <div className="card-left"></div>
-          <div className="card-right"></div>
-          <RevenueComboChart />
-          <TicketSalesPie />
+          <div className="card-left">
+            <RevenueComboChart />
+          </div>
+          <div className="card-right">
+            <TicketSalesPie />
+          </div>
         </div>
       </div>
     </div>

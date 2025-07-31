@@ -15,13 +15,29 @@ const data = [
   { name: "Early Bird", value: 300 },
 ];
 
-// Custom colors
-const COLORS = ["#FF6F00", "#FFD3B2", "#FFEDE0"];
+
+const COLORS = ["#FF6F00", "#e1a97eff", "#a35822ff"];
 
 export const TicketSalesPie = () => {
   return (
-    <div>
-      <ResponsiveContainer>
+    <div 
+    style={{
+        marginTop:"27px",
+        width: "100%",
+        height: "300px",
+        display: "flex",
+        fontFamily:"Inter",
+        fontSize:"12px",
+        flexDirection:"column",
+        justifyContent: "start",
+        alignItems: "center",
+        marginLeft:"-30px",
+        marginRight:"0",
+        gap:"0"
+  
+      }}
+    >
+      <ResponsiveContainer >
         <PieChart>
           <Pie
             data={data}
