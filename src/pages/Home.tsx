@@ -5,6 +5,7 @@ import { Card, ExtraCard } from "../components/Cards";
 import { TicketSalesPie } from "../components/TicketSalesPie";
 import { RevenueComboChart } from "../components/RevenueComboChart";
 import { BookingsTable } from "../components/BookingsTable";
+import { Comments } from "../components/Comments";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
 
         <div className="other-card-1">
           <BookingsTable />
+          <Comments/>
         </div>
       </div>
     </div>

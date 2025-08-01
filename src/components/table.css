@@ -4,7 +4,8 @@
   padding: 20px;
   font-family: "Inter", sans-serif;
   font-size: 12px;
-  width: 800px;
+  width: 600px;
+  min-height: 400px;
 }
 
 .table-wrapper h4 {
@@ -14,6 +15,7 @@
 
 .table-container {
   overflow-x: auto;
+  overflow-y: scroll;
 }
 
 .custom-table {

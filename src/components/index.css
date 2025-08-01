@@ -267,3 +267,64 @@ a {
   flex: 1;
   overflow-x: hidden;
 }
+
+
+.comments-wrapper {
+  background-color: #ffede0;
+  border-radius: 17px;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  width: 310px;
+  min-height: 400px;
+}
+
+.comments-wrapper h4 {
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.comment-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.5); 
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e1a97e;
+}
+
+.comment-content:last-child {
+  border-bottom: none; 
+}
+
+.comment-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-content-2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-content-2 h5 {
+  font-size: 14px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.comment-content-2 p {
+  font-size: 12px;
+  margin: 4px 0 0 0;
+  line-height: 1.4;
+}
+
+.comment-content:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transition: background 0.2s ease;
+}
