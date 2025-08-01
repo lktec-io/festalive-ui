@@ -83,7 +83,6 @@ a {
   color: inherit;
 }
 
-/* Rest: cards, layout, profile, etc. unchanged */
 .all-components-arrangemnet {
   display: flex;
   flex-direction: row;
@@ -132,6 +131,29 @@ a {
   justify-content: flex-start;
   align-items: flex-start;
 }
+
+.other-card-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.card-left-2{
+  background-color: var(--orangeOne);
+  width: 800px;
+  height: 300px;
+  border-radius: 17px;
+}
+
+
+.card-right-2 {
+  background-color: var(--orangeOne);
+  width: 250px;
+  height: 300px;
+  border-radius: 17px;
+}
+
 
 .card-left,
 .card-right {

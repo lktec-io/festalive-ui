@@ -4,6 +4,7 @@ import { Sidebar } from "../components/Sidebar";
 import { Card, ExtraCard } from "../components/Cards";
 import { TicketSalesPie } from "../components/TicketSalesPie";
 import { RevenueComboChart } from "../components/RevenueComboChart";
+import { BookingsTable } from "../components/BookingsTable";
 
 export default function Home() {
   return (
@@ -25,11 +26,11 @@ export default function Home() {
         </div>
         {/* End of the cards with charts */}
 
-        <div className="other-card">
-          <div className="card-left">
-            <RevenueComboChart />
+        <div className="other-card-2">
+          <div className="card-left-2">
+            <BookingsTable/>
           </div>
-          <div className="card-right">
+          <div className="card-right-2">
             <TicketSalesPie />
           </div>
         </div>
