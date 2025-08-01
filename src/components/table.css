@@ -6,6 +6,9 @@
   font-size: 12px;
   width: 600px;
   min-height: 400px;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
 }
 
 .table-wrapper h4 {
@@ -14,8 +17,9 @@
 }
 
 .table-container {
+  overflow-y: auto;
   overflow-x: auto;
-  overflow-y: scroll;
+  flex: 1;
 }
 
 .custom-table {
@@ -23,15 +27,21 @@
   width: 100%;
 }
 
+.custom-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #ffd2b0;
+}
+
 .custom-table thead tr {
-  background-color: #ffd2b0; 
- 
+  background-color: #ffd2b0;
 }
 
 .custom-table th,
 .custom-table td {
   border: 1px solid #ddd;
-  
+
   padding: 12px;
   text-align: left;
 }
