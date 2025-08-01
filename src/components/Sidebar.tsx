@@ -88,14 +88,13 @@ export const Sidebar = () => {
                 <NavLink
                   to={item.link}
                   className={({ isActive }) =>
-                    isActive ? "activeItem sidebar-items" : "sidebar-items"
+                    isActive ? "sidebar-items activeItem" : "sidebar-items"
                   }
                 >
                   <div className="sidebar-item">
                     <img
                       src={
-                        hoveredId === item.id || 
-                        window.location.pathname === item.link
+                        hoveredId === item.id || window.location.pathname === item.link
                           ? item.iconactive
                           : item.icon
                       }
@@ -103,7 +102,7 @@ export const Sidebar = () => {
                       width={20}
                       height={20}
                     />
-                    <span style={{ marginLeft: "10px" }}>{item.title}</span>
+                    <span style={{ marginLeft: "5px" }}>{item.title}</span>
                   </div>
                 </NavLink>
               </li>

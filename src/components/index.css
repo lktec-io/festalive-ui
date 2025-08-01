@@ -1,87 +1,30 @@
-.all-components-arrangemnet{
-  /* background-color: red; */
-  display: flex;
-  flex-direction:row;
-  align-items: start;
-  justify-content: start;
-  max-width: 100vw;
-  min-height: 100vh;
-}
-
-.inner-components{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 20px; 
-  margin-left: 248px;
-}
-
-.cards-chart{
-
-  display: flex;
-  flex-direction:row;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-}
-
-.charts{
-  display: flex;
-  flex-direction: row;
-  gap: 34px;
-  width: 100%; 
-  min-height: 300px;
-  flex-wrap: wrap;
-}
-
-.cards-extracard{
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
-
-}
-
-.other-card{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.card-left, .card-right {
-  background-color: var(--orangeOne);
-  width: 500px;
-  height: 350px;
-  border-radius: 17px;
+*{
+  font-family: 'Inter';
 }
 
 .sidebar {
   background-color: var(--orangeOne);
   width: 248px;
-  height: 100vh; /* Full height */
+  height: 100vh;
   border-radius: 15px 0 0 15px;
   display: flex;
-  position: fixed; /* Stays pinned */
+  position: fixed;
   top: 0;
   left: 0;
-  overflow-y: auto; /* Enables vertical scrolling */
-  scrollbar-width: thin; /* Firefox scrollbar */
-  scrollbar-color: #E66400 transparent; /* Firefox thumb */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #e66400 transparent;
 }
 
 .sidebar::-webkit-scrollbar {
-  width: 6px; /* Scrollbar width */
+  width: 6px;
 }
-
 .sidebar::-webkit-scrollbar-thumb {
-  background-color: #E66400; /* Thumb color */
+  background-color: #e66400;
   border-radius: 10px;
 }
-
 .sidebar::-webkit-scrollbar-track {
-  background: transparent; /* Track color */
+  background: transparent;
 }
 
 ul {
@@ -91,56 +34,40 @@ ul {
 }
 
 li {
-  font-family: "Inter", sans-serif;
-  font-size: small;
-  text-decoration: none;
-  margin: 5px;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
+  font-size: 13px;
+  margin: 5px 0;
+}
+
+.sidebar-items {
+  display: flex;
+  align-items: center;
+  justify-content:flex-start;
+  width: 90%;
+  padding: 4px 5px;
   border-radius: 5px;
-}
-
-
-.isActive {
-  font-family: "Inter", sans-serif;
-  font-size: small;
   text-decoration: none;
-  margin: 5px;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
-  border-radius: 5px;
+  color: inherit;
+  transition: background 0.2s ease;
 }
 
-.activeItem {
-  background-color: var(--orangeTwo);
- 
+.sidebar-items:hover {
+  background: #f9dfcc;
 }
 
-.isActive{
-  background-color: blue;
+.sidebar-items.activeItem {
+  background: var(--orangeTwo);
 }
 
-li:hover:not(.active) {
-  background-color:#FFD2B0;
-}
-
-a{
-  text-decoration: none;
-  color:inherit;
- 
+.sidebar-item {
+  display: flex;
+  align-items: center;
 }
 
 .sidebar-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  scroll-behavior: smooth;
 }
 
 .sidebar-content-container {
@@ -151,28 +78,70 @@ a{
   width: 100%;
 }
 
-.sidebar-item {
-  margin:0;
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Rest: cards, layout, profile, etc. unchanged */
+.all-components-arrangemnet {
   display: flex;
   flex-direction: row;
-  justify-content:flex-start;
-  align-items: center;
-}
-
-.sidebar-items {
-  display: flex;
+  align-items: start;
   justify-content: start;
-  align-items: center;
-  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
 }
 
+.inner-components {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  margin-left: 248px;
+}
 
+.cards-chart {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
 
-/* SIDE BAR INAISHIA HAPAAAA */
-/* ------------------------ */
+.charts {
+  display: flex;
+  flex-direction: row;
+  gap: 34px;
+  width: 100%;
+  min-height: 300px;
+  flex-wrap: wrap;
+}
 
-.card-container{
- 
+.cards-extracard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.other-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.card-left,
+.card-right {
+  background-color: var(--orangeOne);
+  width: 500px;
+  height: 350px;
+  border-radius: 17px;
+}
+
+.card-container {
   display: flex;
   flex-wrap: nowrap;
 }
@@ -182,16 +151,16 @@ a{
   background-color: var(--orangeOne);
   border-radius: 12px;
   padding: 1rem;
-  width: 210px;   
-  height: 120px;  
+  width: 210px;
+  height: 120px;
   text-decoration: none;
   color: black;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
   transition: transform 0.2s ease;
-  display: flex;            
-  flex-direction: column;   
-  justify-content: center;  
-  align-items: center;   
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .card:hover {
@@ -207,23 +176,7 @@ a{
   gap: 0.1rem;
 }
 
-/* .card-content img {
-  align-self: flex-start;
-} */
-
 .card-content h3 {
-  font-size: 16px;
-  margin: 0;
-  font-weight: 100;
-}
-
-.card-content-2 h3 {
-  font-size: 16px;
-  margin: 0;
-  font-weight: 100;
-}
-
-.card-content-2 h3 {
   font-size: 16px;
   margin: 0;
   font-weight: 100;
@@ -239,45 +192,40 @@ a{
   font-family: "Inter", sans-serif;
   font-weight: 550;
   font-size: 24px;
-  color:black;
+  color: black;
 }
 
-/*  *CARDS ENDING HERE JA/
-
-/* ------------- */
-
-.profile-card-contents{
-  font-family: 'Inter', sans-serif;
-  /* background-color: red; */
+.profile-card-contents {
+  font-family: "Inter", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
 }
 
-.profile-item{
+.profile-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.profile-item img{
+.profile-item img {
   border-radius: 100%;
-  border-color: #E66400;
+  border-color: #e66400;
   border-style: double;
-  stroke: #E66400;
+  stroke: #e66400;
   height: 100px;
   width: 100px;
 }
 
-.profile-item h5{
-font-size: 12px;
-color: #E66400;
+.profile-item h5 {
+  font-size: 12px;
+  color: #e66400;
 }
 
-.profile-item h6{
-font-size: 10px;
+.profile-item h6 {
+  font-size: 10px;
 }
 
 .layout-container {
