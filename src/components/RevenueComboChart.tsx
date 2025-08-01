@@ -24,32 +24,44 @@ export const RevenueComboChart = () => {
   return (
     <div
       style={{
-        marginTop:"27px",
-        width: "100%",
+        backgroundColor: "#ffede0",
+        marginTop: "27px",
+        width:"480px",
         height: "300px",
         display: "flex",
-        fontFamily:"Inter",
-        fontSize:"12px",
-        flexDirection:"column",
-        justifyContent: "start",
+        flexDirection: "column",
+        justifyContent: "flex-start",
         alignItems: "center",
-        marginLeft:"-30px",
-        marginRight:"0",
-        gap:"0"
-  
+        fontFamily: "Inter",
+        fontSize: "12px",
+        borderRadius: "17px",
+        padding: "10px",
+        
+        maxWidth: "600px",
+        margin: "0 auto",  
       }}
     >
-      <h4 style={{fontWeight:"500"}}>Ticket Sales Overtime</h4>
-      <ResponsiveContainer width="70%" height="100%">
-        <ComposedChart data={data}>
-          <CartesianGrid stroke="#f5f5f5" />
-          <XAxis dataKey="month" />
-          <YAxis />
-          <Tooltip />
-          <Bar dataKey="tickets" barSize={20} fill="#FF6F00" />
-          <Line type="monotone" dataKey="revenue" stroke="#FF4500" />
-        </ComposedChart>
-      </ResponsiveContainer>
+      <h4 style={{ fontWeight: "500" }}>Ticket Sales Overtime</h4>
+
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <ResponsiveContainer width="90%" height="100%">
+          <ComposedChart data={data}>
+            <CartesianGrid stroke="#f5f5f5" />
+            <XAxis dataKey="month" />
+            <YAxis />
+            <Tooltip />
+            <Bar dataKey="tickets" barSize={50} fill="#FF6F00" />
+            <Line type="monotone" dataKey="revenue" stroke="#FF4500" />
+          </ComposedChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };

@@ -38,7 +38,7 @@ const Bookings: BookingsData[] = [
 export const BookingsTable = () => {
   return (
     <div>
-      <div style={{ overflowX: "auto" }}>
+      <div style={{ overflowX: "auto" , overflowY:"auto"}}>
         <table style={{ borderCollapse: "collapse", width: "100%" }}>
           <thead>
             <tr>

@@ -15,24 +15,18 @@ export default function Home() {
           <Card />
           <ExtraCard />
         </div>
+
         {/* Second cards/ with charts ja ., zinaanzia hapa */}
-        <div className="other-card">
-          <div className="card-left">
-            <RevenueComboChart />
-          </div>
-          <div className="card-right">
-            <TicketSalesPie />
-          </div>
+
+        <div className="other-card-1">
+          <RevenueComboChart />
+          <TicketSalesPie />
         </div>
+        
         {/* End of the cards with charts */}
 
-        <div className="other-card-2">
-          <div className="card-left-2">
-            <BookingsTable/>
-          </div>
-          <div className="card-right-2">
-            <TicketSalesPie />
-          </div>
+        <div className="other-card-1">
+          <BookingsTable />
         </div>
       </div>
     </div>
