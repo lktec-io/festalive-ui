@@ -16,13 +16,13 @@ export default function Home() {
           <ExtraCard />
         </div>
 
-        {/* Second cards/ with charts ja ., zinaanzia hapa */}
+        {/* Second cards / with charts ja ., zinaanzia hapa */}
 
         <div className="other-card-1">
           <RevenueComboChart />
           <TicketSalesPie />
         </div>
-        
+
         {/* End of the cards with charts */}
 
         <div className="other-card-1">

@@ -1,6 +1,7 @@
 "use client";
 import "../globals.css";
 import "../components/index.css";
+import "../components/table.css";
 
 interface BookingsData {
   id: number;
@@ -21,7 +22,7 @@ const Bookings: BookingsData[] = [
     ticketType: 1,
     payment: 3000,
     status: "PAID",
-    venue: "Main Hall"
+    venue: "Main Hall",
   },
   {
     id: 2,
@@ -30,41 +31,31 @@ const Bookings: BookingsData[] = [
     ticketType: 2,
     payment: 2000,
     status: "PENDING",
-    venue: "Arena"
+    venue: "Arena",
   },
 ];
 
-
 export const BookingsTable = () => {
   return (
-    <div>
-      <div style={{ overflowX: "auto" , overflowY:"auto"}}>
-        <table style={{ borderCollapse: "collapse", width: "100%" }}>
+    <div className="table-wrapper">
+      <h4>Recent Bookings</h4>
+      <div className="table-container">
+        <table className="custom-table">
           <thead>
             <tr>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>
-                Event
-              </th>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>
-                Tickets Sold
-              </th>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>
-                Revenue
-              </th>
+            <th>Name</th>
+              <th>Event</th>
+              <th>Payment</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
             {Bookings.map((item) => (
               <tr key={item.id}>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                  {item.event}
-                </td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                  {item.ticketsSold}
-                </td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                  ${item.payment}
-                </td>
+                <td>{item.name}</td>
+                <td>{item.event}</td>
+                <td>Tzs. {item.payment || "-"}</td>
+                <td>{item.status || "-"}</td>
               </tr>
             ))}
           </tbody>
