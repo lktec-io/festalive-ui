@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// Fake data — replace with your API data
+
 const data = [
   { name: "Jan", sales: 400 },
   { name: "Feb", sales: 300 },

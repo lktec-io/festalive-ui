@@ -15,9 +15,10 @@ export default function Router() {
   return (
     <Suspense fallback={<Shimmer />}>
       <Routes>
+        
+        <Route path="/auth" element={<Auth />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route index element={<Auth />} />
           <Route path="tickets" element={<Tickets />} />
           <Route path="promote" element={<Promote />} />
           <Route path="events" element={<Events />} />

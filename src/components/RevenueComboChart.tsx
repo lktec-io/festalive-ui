@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import {
   ComposedChart,
   Line,
@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// Fake data
+
 const data = [
   { month: "Jan", revenue: 2400, tickets: 100 },
   { month: "Feb", revenue: 3800, tickets: 150 },
@@ -25,7 +25,7 @@ export const RevenueComboChart = () => {
     <div
       style={{
         backgroundColor: "#ffede0",
-        marginTop: "27px",
+        // marginTop: "27px",
         width:"480px",
         height: "300px",
         display: "flex",
@@ -36,9 +36,8 @@ export const RevenueComboChart = () => {
         fontSize: "12px",
         borderRadius: "17px",
         padding: "10px",
-        
         maxWidth: "600px",
-        margin: "0 auto",  
+        // margin: "0 auto",  
       }}
     >
       <h4 style={{ fontWeight: "500" }}>Ticket Sales Overtime</h4>
