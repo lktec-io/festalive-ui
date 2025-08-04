@@ -11,6 +11,18 @@
   flex-direction: column;
 }
 
+.events-table-wrapper{
+   background-color: #ffede0;
+  border-radius: 17px;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  width: 1020px;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .table-wrapper h4 {
   font-weight: 500;
   margin-bottom: 15px;
@@ -57,4 +69,10 @@
 
 .custom-table th {
   font-weight: 600;
+}
+
+.upper-event-container{
+background-color: red;
+width: 100vw;
+height: 50px;
 }

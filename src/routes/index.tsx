@@ -3,7 +3,7 @@ import { lazy, Suspense } from "react";
 import Shimmer from "../components/Shimmer.tsx";
 import { Layout } from "../Layout.tsx";
 
-
+const Auth = lazy(() => import("../pages/Auth.tsx"));
 const Home = lazy(() => import("../pages/Home.tsx"));
 const Tickets = lazy(() => import("../pages/Tickets.tsx"));
 const Promote = lazy(() => import("../pages/Promote.tsx"));
@@ -17,6 +17,7 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route index element={<Auth />} />
           <Route path="tickets" element={<Tickets />} />
           <Route path="promote" element={<Promote />} />
           <Route path="events" element={<Events />} />
