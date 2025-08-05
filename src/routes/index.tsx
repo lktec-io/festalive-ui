@@ -2,9 +2,12 @@ import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Shimmer from "../components/Shimmer.tsx";
 import { Layout } from "../Layout.tsx";
-// import LoginPage from "../pages/LoginPage.tsx";
 
 const Auth = lazy(() => import("../pages/AuthPage.tsx"));
+const SelectUserType = lazy(()=> import('../pages/SelectUserType.tsx'));
+const CreatorSignUp = lazy(() => import("../pages/SignupCreator.tsx"));
+const OrganizerSignup = lazy(() => import("../pages/SignupOrganizer.tsx"));
+const UserSignup = lazy(() => import("../pages/SignupUser.tsx"));
 const Login  = lazy(() => import("../pages/LoginPage.tsx"));
 const Signup  = lazy(() => import("../pages/SignupPage.tsx"));
 const Home = lazy(() => import("../pages/Home.tsx"));
@@ -18,7 +21,10 @@ export default function Router() {
   return (
     <Suspense fallback={<Shimmer />}>
       <Routes>
-        
+        <Route path="/signup-user/" element={<SelectUserType />} />
+        <Route path="/signup/creator" element={<CreatorSignUp />} />
+        <Route path="/signup/organizer" element={<OrganizerSignup />} />
+        <Route path="/signup/user" element={<UserSignup />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup/>} />
