@@ -5,7 +5,7 @@ import "../globals.css";
 import "../components/index.css";
 import "../pages/auth.css";
 
-export default function SignupCreator () {
+export default function SignupCreator() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     email: "",
@@ -16,35 +16,63 @@ export default function SignupCreator () {
     socials: "",
   });
 
-  const handleChange = (e:any) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const nextStep = () => setStep((prev) => prev + 1);
+  const isStepValid = () => {
+    if (step === 1) {
+      return (
+        formData.email &&
+        formData.password &&
+        formData.confirmPassword &&
+        formData.password === formData.confirmPassword
+      );
+    }
+    if (step === 2) {
+      return formData.fullName && formData.bio;
+    }
+    return true;
+  };
+
+  const nextStep = () => {
+    if (isStepValid()) setStep((prev) => prev + 1);
+  };
+
   const prevStep = () => setStep((prev) => prev - 1);
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log("Creator Signup:", formData);
-    // TODO: Send to backend
+    // TODO: Submit to backend
   };
 
   return (
     <div className="auth-wrapper">
       <div className="auth-left">
-        <img src="/assets/celeb.jpg" alt="Join Festalive" className="auth-image" />
+        <img
+          src="/assets/celeb.jpg"
+          alt="Join Festalive"
+          className="auth-image"
+        />
       </div>
 
       <div className="auth-right">
         <div className="auth-form">
-          <img src="/assets/festalive-wh.png" alt="Festalive" className="auth-logo" />
+          <img
+            src="/assets/festalive-wh.png"
+            alt="Festalive"
+            className="auth-logo"
+          />
           <h2>Join as a Creator</h2>
 
-          {/* Progress Dots */}
           <div className="progress-dots">
             {[1, 2, 3].map((dot) => (
-              <span key={dot} className={`dot ${step === dot ? "active-dot" : ""}`}></span>
+              <span
+                key={dot}
+                className={`dot ${step === dot ? "active-dot" : ""}`}
+              ></span>
             ))}
           </div>
 
@@ -72,7 +100,14 @@ export default function SignupCreator () {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                 />
-                <button type="button" onClick={nextStep}>Next</button>
+                <button
+                  type="button"
+                  onClick={nextStep}
+                  disabled={!isStepValid()}
+                  className="full-width-btn"
+                >
+                  Next
+                </button>
               </>
             )}
 
@@ -92,8 +127,21 @@ export default function SignupCreator () {
                   onChange={handleChange}
                 ></textarea>
                 <div className="step-buttons">
-                  <button type="button" onClick={prevStep}>Back</button>
-                  <button type="button" onClick={nextStep}>Next</button>
+                  <button
+                    type="button"
+                    onClick={nextStep}
+                    disabled={!isStepValid()}
+                    className="full-width-btn"
+                  >
+                    Next
+                  </button>
+                  <button
+                    type="button"
+                    onClick={prevStep}
+                    className="full-width-btn back-btn"
+                  >
+                    Back
+                  </button>
                 </div>
               </>
             )}
@@ -108,8 +156,17 @@ export default function SignupCreator () {
                   onChange={handleChange}
                 />
                 <div className="step-buttons">
-                  <button type="button" onClick={prevStep}>Back</button>
-                  <button type="submit">Finish Signup</button>
+                  <button type="submit" className="full-width-btn finish-btn">
+                    Finish Signup
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={prevStep}
+                    className="full-width-btn back-btn"
+                  >
+                    Back
+                  </button>
                 </div>
               </>
             )}
@@ -122,4 +179,4 @@ export default function SignupCreator () {
       </div>
     </div>
   );
-};
+}

@@ -67,6 +67,14 @@ background-color: green;
   box-sizing: border-box;
 }
 
+.auth-form textarea{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 12px;
+  box-sizing: border-box;
+}
 .auth-form button {
   width: 100%;
   padding: 12px;
@@ -200,4 +208,62 @@ background-color: green;
   padding: 10px;
   margin: 5px 0;
   font-family: 'Inter', sans-serif;
+}
+.progress-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0 20px;
+}
+
+.progress-dots .dot {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.progress-dots .active-dot {
+  background-color: var(--orangeThree);
+  transform: scale(1.3);
+}
+
+.step-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--orangeThree);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.full-width-btn:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+button.full-width-btn.back-btn {
+  background-color: var(--orangeOne) !important;
+ border-style:solid;
+ border-width: 1px;
+ border-color: #f69b2c;
+  color: black;
+  font-weight: 550;
+} 
+button.full-width-btn.finish-btn {
+  background-color: var(--orangeThree) !important;
+}
+
+button.full-width-btn.finish-btn:hover {
+  background-color: #f69b2c !important;
 }
