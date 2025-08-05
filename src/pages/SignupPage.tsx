@@ -72,7 +72,8 @@ export default function SignupPage() {
                   className="toggle-visibility"
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  {/* {showPassword ? <EyeOff size={18} /> : <Eye size={18} />} */}
+                   {showPassword ? "🙈" : "👁️"}
                 </span>
               </div>
               {errors.password && (
@@ -96,9 +97,11 @@ export default function SignupPage() {
                   }
                 >
                   {showConfirmPassword ? (
-                    <EyeOff size={18} />
+                     "🙈"
+                   
                   ) : (
-                    <Eye size={18} />
+                   
+                     "👁️"
                   )}
                 </span>
               </div>
