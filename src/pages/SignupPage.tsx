@@ -45,6 +45,7 @@ export default function SignupPage() {
 
       <div className="auth-right">
         <div className="auth-form">
+          <img src="/assets/festalivelogo.png" alt="Logo" />
           <h2>Welcome</h2>
           <form onSubmit={handleSubmit} noValidate>
             <div className="input-wrapper">

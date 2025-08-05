@@ -41,8 +41,10 @@ export default function LoginPage() {
       </div>
 
       <div className="auth-right">
+        
         <div className="auth-form">
-          <h2>Welcome Back</h2>
+          <img src="/assets/festalivelogo.png" alt="Logo" />
+          <h2>Login</h2>
           <form onSubmit={handleSubmit}>
             <div className="input-wrapper">
               <input
