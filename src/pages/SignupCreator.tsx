@@ -61,7 +61,7 @@ export default function SignupCreator() {
       <div className="auth-right">
         <div className="auth-form">
           <img
-            src="/assets/festalive-wh.png"
+            src="/assets/festalivelogo.png"
             alt="Festalive"
             className="auth-logo"
           />

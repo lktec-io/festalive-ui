@@ -29,7 +29,7 @@ export default function LoginPage() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // 🔐 Proceed with login
+      
       console.log("Logging in:", { email, password });
     }
   };
