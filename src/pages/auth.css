@@ -13,14 +13,6 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.023);
 }
 
-.auth-wrapper-1{
-background-color: red;
-}
-
-.auth-form-2{
-background-color: green;
-}
-
 .auth-left {
   flex: 1;
   margin: 0;
@@ -30,7 +22,7 @@ background-color: green;
 .auth-image {
   width: 100%;
   height: 100%;
-  object-fit:cover;
+  object-fit: cover;
 }
 
 .auth-right {
@@ -58,23 +50,18 @@ background-color: green;
   align-items: center;
 }
 
-.auth-form input {
+.auth-form input,
+.auth-form textarea,
+.location-select {
   width: 100%;
   padding: 10px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 12px;
   box-sizing: border-box;
 }
 
-.auth-form textarea{
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 12px;
-  box-sizing: border-box;
-}
 .auth-form button {
   width: 100%;
   padding: 12px;
@@ -98,14 +85,6 @@ background-color: green;
   background-color: var(--orangeTwo);
 }
 
-.auth-forgot {
-  font-size: 10px;
-  color: #555;
-  text-decoration: none;
-  align-self: center;
-  margin: -5px 10% 5px auto;
-}
-
 .auth-signup-text {
   font-size: 12px;
   margin-top: 10px;
@@ -117,98 +96,7 @@ background-color: green;
   text-decoration: none;
   font-weight: 500;
 }
-.error-message {
-  color: red;
-  font-size: 10px;
-  margin: 2px 0 5px 5px;
-  text-align: left;
-}
 
-.input-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.input-error {
-  border-color: red !important;
-}
-
-.password-field {
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.password-field input {
-  width: 100%;
-  padding-right: 35px;
-}
-
-.toggle-visibility {
-  position: absolute;
-  right: 10px;
-  cursor: pointer;
-  color: #666;
-  display: flex;
-  align-items: center;
-}
-
-.user-type-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.user-type-btn {
-  padding: 12px;
-  border-radius: 8px;
-  background-color: var(--orangeThree);
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s ease;
-}
-
-.user-type-btn:hover {
-  background-color: var(--orangeTwo);
-}
-
-.auth-logo {
-  width: 120px;
-  margin-bottom: 20px;
-}
-
-/* Responsiveness */
-
-@media (max-width: 768px) {
-  .auth-wrapper {
-    flex-direction: column;
-    width: 90%;
-    height: auto;
-  }
-
-  .auth-left {
-    display: none;
-  }
-
-  .auth-right {
-    width: 100%;
-  }
-}
-
-/* SIGN UP */
-
-.signup-form input, .signup-form button {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  font-family: 'Inter', sans-serif;
-}
 .progress-dots {
   display: flex;
   justify-content: center;
@@ -254,16 +142,127 @@ background-color: green;
 
 button.full-width-btn.back-btn {
   background-color: var(--orangeOne) !important;
- border-style:solid;
- border-width: 1px;
- border-color: #f69b2c;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #f69b2c;
   color: black;
   font-weight: 550;
-} 
+}
+
 button.full-width-btn.finish-btn {
   background-color: var(--orangeThree) !important;
 }
 
 button.full-width-btn.finish-btn:hover {
   background-color: #f69b2c !important;
+}
+
+/* Combined Select + Tags Component */
+.combined-select-container {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.combined-select-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 2px;
+  background: white;
+  min-height: 40px;
+}
+
+.combined-select-tags {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  gap: 4px;
+  padding: 4px;
+  align-items: center;
+}
+
+.combined-select {
+  flex: 1;
+  min-width: 120px;
+  border: none;
+  outline: none;
+  font-size: 12px;
+  padding: 8px;
+  background: transparent;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 1em;
+}
+
+.tag {
+  background-color: var(--orangeOne);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.remove-tag {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 4px;
+  padding: 0;
+  line-height: 1;
+}
+
+.combined-select option:disabled {
+  color: #ccc;
+  background-color: #f5f5f5;
+}
+
+/* Socials input */
+.socials-input {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.socials-input select {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.socials-input input {
+  flex: 2;
+  margin-bottom: 0;
+}
+
+.socials-input button {
+  flex: 1;
+  padding: 10px;
+  white-space: nowrap;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .auth-wrapper {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+  }
+
+  .auth-left {
+    display: none;
+  }
+
+  .auth-right {
+    width: 100%;
+  }
 }
