@@ -80,7 +80,7 @@ export default function LoginPage() {
           </form>
 
           <p className="auth-signup-text">
-            Don’t have an account? <NavLink to="/signup">Sign Up</NavLink>
+            Don’t have an account? <NavLink to="/signup-user">Sign Up</NavLink>
           </p>
         </div>
       </div>
