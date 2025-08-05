@@ -3,7 +3,8 @@ import "../globals.css";
 import "../components/index.css";
 import "../pages/auth.css";
 import { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+import { NavLink } from "react-router-dom";
+// import { Eye, EyeOff } from "lucide-react";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
@@ -73,7 +74,7 @@ export default function SignupPage() {
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {/* {showPassword ? <EyeOff size={18} /> : <Eye size={18} />} */}
-                   {showPassword ? "🙈" : "👁️"}
+                  {showPassword ? "🙈" : "👁️"}
                 </span>
               </div>
               {errors.password && (
@@ -92,23 +93,13 @@ export default function SignupPage() {
                 />
                 <span
                   className="toggle-visibility"
-                  onClick={() =>
-                    setShowConfirmPassword(!showConfirmPassword)
-                  }
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 >
-                  {showConfirmPassword ? (
-                     "🙈"
-                   
-                  ) : (
-                   
-                     "👁️"
-                  )}
+                  {showConfirmPassword ? "🙈" : "👁️"}
                 </span>
               </div>
               {errors.confirmPassword && (
-                <span className="error-message">
-                  {errors.confirmPassword}
-                </span>
+                <span className="error-message">{errors.confirmPassword}</span>
               )}
             </div>
 
@@ -116,7 +107,7 @@ export default function SignupPage() {
           </form>
 
           <p className="auth-signup-text">
-            Have an account? <a href="#">Login</a>
+            Have an account? <NavLink to="/login">Login</NavLink>
           </p>
         </div>
       </div>

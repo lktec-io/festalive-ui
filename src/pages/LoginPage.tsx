@@ -3,6 +3,7 @@ import { useState } from "react";
 import "../globals.css";
 import "../components/index.css";
 import "../pages/auth.css";
+import { NavLink } from "react-router-dom";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -77,7 +78,7 @@ export default function LoginPage() {
           </form>
 
           <p className="auth-signup-text">
-            Don’t have an account? <a href="#">Sign up</a>
+            Don’t have an account? <NavLink to="/signup">Sign Up</NavLink>
           </p>
         </div>
       </div>
