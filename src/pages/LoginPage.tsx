@@ -3,19 +3,39 @@ import { useState } from "react";
 import "../globals.css";
 import "../components/index.css";
 import "../pages/auth.css";
-import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const newErrors: { email?: string; password?: string } = {};
 
+      try {
+      const res = await axios.post("http://localhost:8000/api/user/login", {
+        email,
+        password,
+      });
+      console.log(res.data)
+      const statuscode = res.status;
+      if(statuscode === 200){
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        navigate("/dash");
+        console.log(res.data.user)
+      }
+      
+    } catch (error) {
+      console.error(error);
+
+      alert("Invalid email or password");
+    }
     if (!email) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(email)) {

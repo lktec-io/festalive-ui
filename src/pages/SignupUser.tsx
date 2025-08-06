@@ -3,7 +3,8 @@ import "../globals.css";
 import "../components/index.css";
 import "../pages/auth.css";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { NavLink, useNavigate } from "react-router-dom";
 // import { Eye, EyeOff } from "lucide-react";
 
 export default function SignupUser() {
@@ -13,11 +14,25 @@ export default function SignupUser() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
     const newErrors: { [key: string]: string } = {};
 
+     try {
+      await axios.post("http://localhost:8000/api/user/register", {
+        email,
+        password,
+        confirmPassword,
+      });
+      alert("Registration successful ");
+      navigate("/");
+    }
+    catch (error) {
+      console.error(error);
+      alert("Error occurred during registration");
+    }
     if (!email) newErrors.email = "Email is required";
     else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = "Invalid email";
 
@@ -35,7 +50,9 @@ export default function SignupUser() {
       // Ja Do signup logic here
       alert("Signup successful");
     }
+
   };
+  
 
   return (
     <div className="auth-wrapper">

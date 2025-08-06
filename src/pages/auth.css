@@ -456,6 +456,101 @@ button.full-width-btn.finish-btn:hover {
   }
 }
 
+
+.org--form {
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  padding: 10px;
+}
+
+.org--form h2 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.org--step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.org--step input,
+.org--step textarea,
+.org--select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+.org--step textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+.org--btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--orangeThree);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+.org--btn:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.org--btn-back {
+  background-color: var(--orangeOne) !important;
+  border: 1px solid var(--orangeThree);
+  color: black !important;
+  font-weight: 500;
+}
+
+.org--btn-primary {
+  background-color: var(--orangeThree);
+}
+
+.org--btn:hover:not(:disabled) {
+  background-color: var(--orangeTwo);
+}
+
+.org--step-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.org--optional {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+/* Responsive – reuse existing media queries */
+@media (max-width: 768px) {
+  .org--form {
+    max-width: 90%;
+  }
+}
+
+
 /* Responsiveness */
 @media (max-width: 768px) {
   .auth-wrapper {
