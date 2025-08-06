@@ -6,7 +6,14 @@ import "../components/index.css";
 import "../pages/auth.css";
 
 const categories = ["DJ", "Band", "Host", "Dancer", "Comedian", "Speaker"];
-const locations = ["Nairobi", "Mombasa", "Kisumu", "Nakuru", "Eldoret"];
+const locations = [
+  "Dar es Salaam",
+  "Nairobi",
+  "Arusha",
+  "Mwanza",
+  "Dodoma",
+  "Mbeya",
+];
 const socialPlatforms = [
   "Instagram",
   "YouTube",
@@ -223,7 +230,7 @@ export default function SignupCreator() {
                   <div className="combined-select-wrapper">
                     <div className="combined-select-tags">
                       {formData.categories.map((cat) => (
-                        <span key={cat} className="tag">
+                        <div key={cat} className="tag">
                           {cat}
                           <button
                             type="button"
@@ -232,7 +239,7 @@ export default function SignupCreator() {
                           >
                             ×
                           </button>
-                        </span>
+                        </div>
                       ))}
                       <select
                         name="currentCategory"
@@ -294,12 +301,13 @@ export default function SignupCreator() {
             )}
 
             {step === 3 && (
-              <>
-                <div className="socials-input">
+              <div className="step3-wrapper">
+                <div className="step3-social-group">
                   <select
                     name="socialPlatform"
                     value={formData.socialPlatform}
                     onChange={handleChange}
+                    className="step3-select"
                   >
                     {socialPlatforms.map((platform) => (
                       <option key={platform} value={platform}>
@@ -313,18 +321,25 @@ export default function SignupCreator() {
                     placeholder="Username"
                     value={formData.currentSocial}
                     onChange={handleChange}
+                    className="step3-input"
                   />
-                  <button type="button" onClick={addSocial}>
+                  <button
+                    type="button"
+                    onClick={addSocial}
+                    className="step3-add-btn"
+                  >
                     Add
                   </button>
                 </div>
-                <div className="tags">
+
+                <div className="step3-tags">
                   {formData.socials.map((link, index) => (
-                    <span key={index} className="tag">
-                      {link}{" "}
+                    <span key={index} className="step3-tag">
+                      {link}
                       <button
                         type="button"
                         onClick={() => removeSocial(index)}
+                        className="step3-tag-remove"
                       >
                         ×
                       </button>
@@ -338,6 +353,7 @@ export default function SignupCreator() {
                   placeholder="Phone Number (optional)"
                   value={formData.phone}
                   onChange={handleChange}
+                  className="step3-optional-input"
                 />
                 <input
                   type="text"
@@ -345,23 +361,22 @@ export default function SignupCreator() {
                   placeholder="Website (optional)"
                   value={formData.website}
                   onChange={handleChange}
+                  className="step3-optional-input"
                 />
-                <div className="step-buttons">
+
+                <div className="step3-buttons">
                   <button
                     type="button"
                     onClick={prevStep}
-                    className="full-width-btn back-btn"
+                    className="step3-back-btn"
                   >
                     Back
                   </button>
-                  <button
-                    type="submit"
-                    className="full-width-btn finish-btn"
-                  >
+                  <button type="submit" className="step3-submit-btn">
                     Finish Signup
                   </button>
                 </div>
-              </>
+              </div>
             )}
           </form>
 
