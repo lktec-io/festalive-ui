@@ -5,7 +5,7 @@ import "../pages/auth.css";
 import { useState } from "react";
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
-// import { Eye, EyeOff } from "lucide-react";
+// import { Eye, EyeOff } from "lucide-react"
 
 export default function SignupUser() {
   const [email, setEmail] = useState("");
