@@ -21,7 +21,6 @@ export const TicketSalesPie = () => {
     <div
       style={{
         // marginTop: "27px",
-       
         width:"480px",
         height: "300px",
         display: "flex",
@@ -57,7 +56,7 @@ export const TicketSalesPie = () => {
               dataKey="value"
               label
             >
-              {data.map((entry, index) => (
+              {data.map((_, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>

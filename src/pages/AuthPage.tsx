@@ -1,9 +1,59 @@
 "use client";
+import { useState } from "react";
 import "../globals.css";
 import "../components/index.css";
 import "../pages/auth.css";
+import axios from "axios";
+import { NavLink, useNavigate } from "react-router-dom";
 
-export default function AuthPage() {
+
+export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const newErrors: { email?: string; password?: string } = {};
+
+      try {
+      const res = await axios.post("http://localhost:8000/api/login", {
+        email,
+        password,
+      });
+      console.log(res.data)
+      const statuscode = res.status;
+      if(statuscode === 200){
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        navigate("/layout");
+        console.log(res.data.user)
+      }
+      
+    } catch (error) {
+      console.error(error);
+      alert("Invalid email or password");
+    }
+    if (!email) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Invalid email format";
+    }
+
+    if (!password) {
+      newErrors.password = "Password is required";
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      
+      console.log("Logging in:", { email, password });
+    }
+  };
+
   return (
     <div className="auth-wrapper">
       <div className="auth-left">
@@ -11,17 +61,46 @@ export default function AuthPage() {
       </div>
 
       <div className="auth-right">
+        
         <div className="auth-form">
-          <h2>Welcome Back</h2>
-          <form>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+          <img src="/assets/festalivelogo.png" alt="Logo" />
+          <h2>Login</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="input-wrapper">
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              {errors.email && <p className="error-message">{errors.email}</p>}
+            </div>
+
+            <div className="input-wrapper">
+              <div className="password-field">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <span
+                  className="toggle-visibility"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "🙈" : "👁️"}
+                </span>
+              </div>
+              {errors.password && <p className="error-message">{errors.password}</p>}
+            </div>
+
             <a href="#" className="auth-forgot">Forgot password?</a>
+
             <button type="submit">Login</button>
           </form>
 
           <p className="auth-signup-text">
-            Don’t have an account? <a href="#">Sign up</a>
+            Don’t have an account? <NavLink to="/signup-user">Sign Up</NavLink>
           </p>
         </div>
       </div>

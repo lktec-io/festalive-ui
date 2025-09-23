@@ -5,7 +5,6 @@ import "../pages/auth.css";
 import { useState } from "react";
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
-// import { Eye, EyeOff } from "lucide-react"
 
 export default function SignupUser() {
   const [email, setEmail] = useState("");
@@ -14,25 +13,29 @@ export default function SignupUser() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [profilePic, setProfilePic] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+
   const navigate = useNavigate();
 
-  const handleSubmit = async(e: React.FormEvent) => {
+  const defaultProfilePic = "/assets/profile.jpg";
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setProfilePic(file);
+
+      // preview
+      const reader = new FileReader();
+      reader.onloadend = () => setPreview(reader.result as string);
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors: { [key: string]: string } = {};
 
-     try {
-      await axios.post("http://localhost:8000/api/user/register", {
-        email,
-        password,
-        confirmPassword,
-      });
-      alert("Registration successful ");
-      navigate("/");
-    }
-    catch (error) {
-      console.error(error);
-      alert("Error occurred during registration");
-    }
     if (!email) newErrors.email = "Email is required";
     else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = "Invalid email";
 
@@ -46,13 +49,31 @@ export default function SignupUser() {
       newErrors.confirmPassword = "Passwords do not match";
 
     setErrors(newErrors);
-    if (Object.keys(newErrors).length === 0) {
-      // Ja Do signup logic here
-      alert("Signup successful");
-    }
+    if (Object.keys(newErrors).length > 0) return;
 
+    try {
+      const data = new FormData();
+      data.append("email", email.trim());
+      data.append("password", password.trim());
+      data.append("confirmPassword", confirmPassword.trim());
+
+      if (profilePic) {
+        data.append("profilePic", profilePic);
+      } else {
+        data.append("profilePic", defaultProfilePic); // fallback default
+      }
+
+      await axios.post("http://localhost:8000/api/user/register", data, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      alert("Registration successful");
+      navigate("/layout");
+    } catch (error) {
+      console.error(error);
+      alert("Error occurred during registration");
+    }
   };
-  
 
   return (
     <div className="auth-wrapper">
@@ -65,6 +86,7 @@ export default function SignupUser() {
           <img src="/assets/festalivelogo.png" alt="Logo" />
           <h2>Welcome</h2>
           <form onSubmit={handleSubmit} noValidate>
+            {/* email */}
             <div className="input-wrapper">
               <input
                 type="email"
@@ -78,6 +100,7 @@ export default function SignupUser() {
               )}
             </div>
 
+            {/* password */}
             <div className="input-wrapper">
               <div className="password-field">
                 <input
@@ -91,7 +114,6 @@ export default function SignupUser() {
                   className="toggle-visibility"
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  {/* {showPassword ? <EyeOff size={18} /> : <Eye size={18} />} */}
                   {showPassword ? "🙈" : "👁️"}
                 </span>
               </div>
@@ -100,6 +122,7 @@ export default function SignupUser() {
               )}
             </div>
 
+            {/* confirm password */}
             <div className="input-wrapper">
               <div className="password-field">
                 <input
@@ -111,13 +134,34 @@ export default function SignupUser() {
                 />
                 <span
                   className="toggle-visibility"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  onClick={() =>
+                    setShowConfirmPassword(!showConfirmPassword)
+                  }
                 >
                   {showConfirmPassword ? "🙈" : "👁️"}
                 </span>
               </div>
               {errors.confirmPassword && (
-                <span className="error-message">{errors.confirmPassword}</span>
+                <span className="error-message">
+                  {errors.confirmPassword}
+                </span>
+              )}
+            </div>
+
+            {/* profile image upload */}
+            <div className="file-upload">
+              <label>Upload Profile Image</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+              />
+              {preview && (
+                <img
+                  src={preview}
+                  alt="Profile Preview"
+                  className="profile-preview"
+                />
               )}
             </div>
 
@@ -125,7 +169,7 @@ export default function SignupUser() {
           </form>
 
           <p className="auth-signup-text">
-            Have an account? <NavLink to="/login">Login</NavLink>
+            Have an account? <NavLink to="/login/user">Login</NavLink>
           </p>
         </div>
       </div>

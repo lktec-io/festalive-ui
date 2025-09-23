@@ -1,10 +1,11 @@
 "use client";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../globals.css";
 import "../components/index.css";
 import "../pages/auth.css";
 import "../pages/org-auth.css";
+import axios from "axios";
 
 const organizerTypes = [
   "Event Management Company",
@@ -12,7 +13,7 @@ const organizerTypes = [
   "Independent Promoter",
   "Corporate Events",
   "Wedding Planner",
-  "Non-Profit Organization"
+  "Non-Profit Organization",
 ];
 
 const businessLocations = [
@@ -22,7 +23,7 @@ const businessLocations = [
   "Mwanza",
   "Dodoma",
   "Mbeya",
-  "Other"
+  "Other",
 ];
 
 export default function SignupOrganizer() {
@@ -39,16 +40,74 @@ export default function SignupOrganizer() {
     website: "",
     taxId: "",
     description: "",
-    socialMedia: ""
+    socialMedia: "",
   });
+  const [profilePic, setProfilePic] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const navigate = useNavigate();
+
+  const defaultProfilePic = "/assets/profile.jpg";
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setProfilePic(file);
+
+      const reader = new FileReader();
+      reader.onloadend = () => setPreview(reader.result as string);
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const data = new FormData();
+      Object.entries(formData).forEach(([key, value]) => {
+        data.append(key, value);
+      });
+
+      if (profilePic) {
+        data.append("profilePic", profilePic);
+      } else {
+        data.append("profilePic", defaultProfilePic);
+      }
+
+      const response = await axios.post(
+        "http://localhost:8000/api/organizer/register",
+        data,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+
+      console.log("Organizer registered successfully:", response.data);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+      navigate("/layout");
+    } catch (error: any) {
+      console.error("Error registering organizer:", error);
+      if (error.response) {
+        alert(
+          `Registration failed: ${
+            error.response.data.message || error.response.statusText
+          }`
+        );
+      } else {
+        alert("Registration failed: Network error or server is down");
+      }
+    }
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const validateEmail = (email: string) => /^\S+@\S+\.\S+$/.test(email);
-  const validatePassword = (password: string) => password.length >= 8;
+  const validatePassword = (password: string) => password.length >= 6;
 
   const isStepValid = () => {
     if (step === 1) {
@@ -70,16 +129,10 @@ export default function SignupOrganizer() {
   };
 
   const nextStep = () => {
-    if (isStepValid()) setStep(prev => prev + 1);
+    if (isStepValid()) setStep((prev) => prev + 1);
   };
 
-  const prevStep = () => setStep(prev => prev - 1);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Organizer Signup:", formData);
-    
-  };
+  const prevStep = () => setStep((prev) => prev - 1);
 
   return (
     <div className="org-auth-wrapper">
@@ -169,8 +222,10 @@ export default function SignupOrganizer() {
                   required
                 >
                   <option value="">Select Organizer Type</option>
-                  {organizerTypes.map(type => (
-                    <option key={type} value={type}>{type}</option>
+                  {organizerTypes.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
                   ))}
                 </select>
                 <input
@@ -220,8 +275,10 @@ export default function SignupOrganizer() {
                   className="org-select"
                 >
                   <option value="">Business Location</option>
-                  {businessLocations.map(loc => (
-                    <option key={loc} value={loc}>{loc}</option>
+                  {businessLocations.map((loc) => (
+                    <option key={loc} value={loc}>
+                      {loc}
+                    </option>
                   ))}
                 </select>
                 <input
@@ -256,6 +313,24 @@ export default function SignupOrganizer() {
                   onChange={handleChange}
                   className="org-input"
                 />
+
+                {/* profile image upload */}
+                <div className="file-upload">
+                  <label>Upload Organization Logo</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
+                  {preview && (
+                    <img
+                      src={preview}
+                      alt="Profile Preview"
+                      className="profile-preview"
+                    />
+                  )}
+                </div>
+
                 <div className="org-step-buttons">
                   <button
                     type="button"
@@ -264,10 +339,7 @@ export default function SignupOrganizer() {
                   >
                     Back
                   </button>
-                  <button
-                    type="submit"
-                    className="org-submit-btn"
-                  >
+                  <button type="submit" className="org-submit-btn">
                     Complete Registration
                   </button>
                 </div>
@@ -276,7 +348,8 @@ export default function SignupOrganizer() {
           </form>
 
           <p className="org-auth-signup-text">
-            Already have an account? <NavLink to="/login">Login</NavLink>
+            Already have an account?{" "}
+            <NavLink to="/login/organizer">Login</NavLink>
           </p>
         </div>
       </div>

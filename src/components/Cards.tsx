@@ -10,7 +10,7 @@ export const CardData = [
     title: "Total Events",
     description: "All the Events that you have hosted",
     amount: "30",
-    link: "/",
+    link: "/layout",
   },
 
   {
@@ -20,7 +20,7 @@ export const CardData = [
     title: "Ticket Sales",
     description: "Total Events",
     amount: "744",
-    link: "/",
+    link: "/layout",
   },
   {
     id: 3,

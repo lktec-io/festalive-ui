@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../globals.css";
 import "../components/index.css";
 import "../pages/auth.css";
@@ -22,6 +23,8 @@ const socialPlatforms = [
   "Twitter",
 ];
 
+type Social = { platform: string; username: string };
+
 type CreatorFormData = {
   email: string;
   password: string;
@@ -29,7 +32,7 @@ type CreatorFormData = {
   fullName: string;
   stageName: string;
   bio: string;
-  socials: string[];
+  socials: Social[];       
   socialPlatform: string;
   currentSocial: string;
   categories: string[];
@@ -37,10 +40,15 @@ type CreatorFormData = {
   location: string;
   phone: string;
   website: string;
+  profilePic: File | null; 
 };
+
 
 export default function SignupCreator() {
   const [step, setStep] = useState(1);
+  const [preview, setPreview] = useState<string | null>(null);
+
+ 
   const [formData, setFormData] = useState<CreatorFormData>({
     email: "",
     password: "",
@@ -56,26 +64,86 @@ export default function SignupCreator() {
     location: "",
     phone: "",
     website: "",
+   profilePic: null,
   });
+ const navigate = useNavigate();
+ 
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  try {
+const defaultProfilePic = "/assets/profile.jpg";
+const data = new FormData();
+
+Object.entries(formData).forEach(([key, value]) => {
+  if (key === "categories" || key === "socials") {
+    data.append(key, JSON.stringify(value));
+  } else if (key === "profilePic") {
+    if (value instanceof File) {
+      data.append("profilePic", value);
+    } else {
+      data.append("profilePic", defaultProfilePic); // default img
+    }
+  } else {
+    data.append(key, value as string);
+  }
+});
+
+const response = await axios.post(
+  "http://localhost:8000/api/creator/register",
+  data,
+  { headers: { "Content-Type": "multipart/form-data" } }
+);
+
+    console.log("Creator registered successfully:", response.data);
+    localStorage.setItem("user", JSON.stringify(response.data.user));
+    alert("Registration successful!");
+    navigate("/login/creator");
+  } catch (error: any) {
+    console.error("Error registering Creator:", error);
+    if (error.response) {
+      alert(`Registration failed: ${error.response.data.message || error.response.statusText}`);
+    } else {
+      alert("Registration failed: Network error or server is down");
+    }
+  }
+};
+
+
+
+
+
+const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  if (e.target.files && e.target.files[0]) {
+    const file = e.target.files[0];
+    setFormData((prev) => ({ ...prev, profilePic: file }));
+
+    // set preview
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
   const validateEmail = (email: string) => /^\S+@\S+\.\S+$/.test(email);
   const validatePassword = (password: string) => password.length >= 6;
 
   const addCategory = (category: string) => {
     if (category && !formData.categories.includes(category)) {
       setFormData((prev) => ({
-        ...prev,
+        ...prev, 
         categories: [...prev.categories, category],
         currentCategory: "",
       }));
     }
   };
-
   const removeCategory = (categoryToRemove: string) => {
     setFormData((prev) => ({
       ...prev,
@@ -83,19 +151,21 @@ export default function SignupCreator() {
     }));
   };
 
-  const addSocial = () => {
-    if (formData.currentSocial) {
-      setFormData((prev) => ({
-        ...prev,
-        socials: [
-          ...prev.socials,
-          `${formData.socialPlatform}: ${formData.currentSocial}`,
-        ],
-        currentSocial: "",
-      }));
-    }
-  };
+const addSocial = () => {
+  if (formData.currentSocial) {
+    setFormData((prev) => ({
+      ...prev,
+      socials: [
+        ...prev.socials,
+        { platform: formData.socialPlatform, username: formData.currentSocial },
+      ],
+      currentSocial: "",
+    }));
+  }
+};
 
+
+  
   const removeSocial = (index: number) => {
     setFormData((prev) => ({
       ...prev,
@@ -120,7 +190,18 @@ export default function SignupCreator() {
         formData.location
       );
     }
+
+    if (!formData.currentCategory && formData.categories.length === 0) {
+  alert("Please select at least one category");
+  return;
+}
+if (!formData.currentSocial && formData.socials.length === 0) {
+  alert("Please add at least one social link");
+  return;
+}
+
     return true;
+
   };
 
   const nextStep = () => {
@@ -129,10 +210,10 @@ export default function SignupCreator() {
 
   const prevStep = () => setStep((prev) => prev - 1);
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log("Creator Signup:", formData);
-  };
+  // const handleSubmit = (e: any) => {
+  //   e.preventDefault();
+  //   console.log("Creator Signup:", formData);
+  // };
 
   return (
     <div className="auth-wrapper">
@@ -152,7 +233,6 @@ export default function SignupCreator() {
             className="auth-logo"
           />
           <h2>Join as a Creator</h2>
-
           <div className="progress-dots">
             {[1, 2, 3].map((dot) => (
               <span
@@ -225,6 +305,8 @@ export default function SignupCreator() {
                   onChange={handleChange}
                   required
                 />
+
+
 
                 <div className="combined-select-container">
                   <div className="combined-select-wrapper">
@@ -332,20 +414,32 @@ export default function SignupCreator() {
                   </button>
                 </div>
 
-                <div className="step3-tags">
-                  {formData.socials.map((link, index) => (
-                    <span key={index} className="step3-tag">
-                      {link}
-                      <button
-                        type="button"
-                        onClick={() => removeSocial(index)}
-                        className="step3-tag-remove"
-                      >
-                        ×
-                      </button>
-                    </span>
-                  ))}
-                </div>
+              <div className="step3-tags">
+  {formData.socials.map((social, index) => (
+    <span key={index} className="step3-tag">
+      {social.platform}: {social.username}
+      <button
+        type="button"
+        onClick={() => removeSocial(index)}
+        className="step3-tag-remove"
+      >
+        ×
+      </button>
+    </span>
+  ))}
+</div>
+
+              <div className="file-upload">
+  <label>Upload Profile Image</label>
+  <input type="file" accept="image/*" onChange={handleFileChange} />
+  {preview && (
+    <img
+      src={preview}
+      alt="Profile Preview"
+      className="profile-preview"
+    />
+  )}
+</div>
 
                 <input
                   type="text"
@@ -381,7 +475,7 @@ export default function SignupCreator() {
           </form>
 
           <p className="auth-signup-text">
-            Already have an account? <NavLink to="/login">Login</NavLink>
+            Already have an account? <NavLink to="/login/creator">Login</NavLink>
           </p>
         </div>
       </div>

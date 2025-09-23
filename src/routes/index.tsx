@@ -21,20 +21,20 @@ export default function Router() {
   return (
     <Suspense fallback={<Shimmer />}>
       <Routes>
-        <Route path="/signup-user/" element={<SelectUserType />} />
+        <Route path="/" element={<SelectUserType />} />
         <Route path="/signup/creator" element={<CreatorSignUp />} />
         <Route path="/signup/organizer" element={<OrganizerSignup />} />
         <Route path="/signup/user" element={<UserSignup />} />
         <Route path="/auth" element={<Auth />} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/signup" element={<Signup/>} />
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="tickets" element={<Tickets />} />
-          <Route path="promote" element={<Promote />} />
-          <Route path="events" element={<Events />} />
-          <Route path="bookings" element={<Bookings />} />
-          <Route path="*" element={<NotFound />} />
+        <Route path="/login/:role" element={<Login/>} />
+        <Route path="/signup" element={<Signup/>} />     
+        <Route path="/layout" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="tickets" element={<Tickets />} />
+        <Route path="promote" element={<Promote />} />
+        <Route path="events" element={<Events />} />
+        <Route path="bookings" element={<Bookings />} />
+        <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </Suspense>

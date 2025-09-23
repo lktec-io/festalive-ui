@@ -13,12 +13,10 @@ export default function Home() {
         <Card />
         <ExtraCard />
       </div>
-
       <div className="other-card-1">
         <RevenueComboChart />
         <TicketSalesPie />
       </div>
-
       <div className="other-card-1">
         <BookingsTable />
         <Comments />

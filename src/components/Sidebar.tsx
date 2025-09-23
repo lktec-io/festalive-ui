@@ -10,7 +10,7 @@ export const SidebarData = [
     icon: "../assets/layout-dashboard-black.svg",
     iconactive: "../assets/layout-dashboard.svg",
     title: "Dashboard",
-    link: "/",
+    link: "/layout",
   },
   {
     id: 2,

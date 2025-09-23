@@ -1,4 +1,9 @@
 /* Organizer Auth Wrapper */
+body{
+  margin: 0;
+  padding: 0;
+}
+
 .org-auth-wrapper {
   display: flex;
   height: 760px;
