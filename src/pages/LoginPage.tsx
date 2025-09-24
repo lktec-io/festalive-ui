@@ -14,6 +14,7 @@ export default function LoginPage() {
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const navigate = useNavigate();
 
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors: { email?: string; password?: string } = {};
@@ -28,10 +29,14 @@ export default function LoginPage() {
     }
 
     try {
-      const res = await axios.post(`http://localhost:8000/api/${role.toLowerCase()}/login`, {
-        email: email.trim(),
-        password: password.trim(),
-      });
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+const res = await axios.post(`${API_BASE_URL}/web/${role.toLowerCase()}/login`, {
+  email: email.trim(),
+  password: password.trim(),
+});
+
+
 
       const user = res.data.user;
       localStorage.setItem("user", JSON.stringify(user));

@@ -75,10 +75,11 @@ export default function SignupOrganizer() {
       }
 
       const response = await axios.post(
-        "http://localhost:8000/api/organizer/register",
+        `${import.meta.env.VITE_API_BASE_URL}/web/organizer/register`,
         data,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
+
 
       console.log("Organizer registered successfully:", response.data);
       localStorage.setItem("user", JSON.stringify(response.data.user));
@@ -87,8 +88,7 @@ export default function SignupOrganizer() {
       console.error("Error registering organizer:", error);
       if (error.response) {
         alert(
-          `Registration failed: ${
-            error.response.data.message || error.response.statusText
+          `Registration failed: ${error.response.data.message || error.response.statusText
           }`
         );
       } else {

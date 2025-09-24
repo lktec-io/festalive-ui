@@ -4,6 +4,7 @@ import "../../src/components/index.css";
 
 export const ProfileCard = () => {
   const [user, setUser] = useState<any>(null);
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
