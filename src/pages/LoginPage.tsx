@@ -29,10 +29,13 @@ export default function LoginPage() {
     }
 
     try {
-     const res = await axios.post(`/web/${role.toLowerCase()}/login`, {
+     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+const res = await axios.post(`${API_BASE_URL}/web/${role.toLowerCase()}/login`, {
   email: email.trim(),
   password: password.trim(),
 });
+
       const user = res.data.user;
       localStorage.setItem("user", JSON.stringify(user));
        navigate("/layout");

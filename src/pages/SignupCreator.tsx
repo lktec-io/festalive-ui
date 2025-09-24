@@ -89,10 +89,11 @@ Object.entries(formData).forEach(([key, value]) => {
 });
 
 const response = await axios.post(
-  "/web/creator/register",
+  `${import.meta.env.VITE_API_BASE_URL}/web/creator/register`,
   data,
   { headers: { "Content-Type": "multipart/form-data" } }
 );
+
 
     console.log("Creator registered successfully:", response.data);
     localStorage.setItem("user", JSON.stringify(response.data.user));
