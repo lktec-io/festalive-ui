@@ -75,11 +75,10 @@ export default function SignupOrganizer() {
       }
 
       const response = await axios.post(
-  `${import.meta.env.VITE_API_BASE_URL}/web/organizer/register`,
-  data,
-  { headers: { "Content-Type": "multipart/form-data" } }
-);
-
+        "http://185.194.216.146:81/web/organizer/register",
+        data,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
 
       console.log("Organizer registered successfully:", response.data);
       localStorage.setItem("user", JSON.stringify(response.data.user));
