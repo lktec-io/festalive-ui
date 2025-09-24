@@ -29,24 +29,19 @@ export default function LoginPage() {
     }
 
     try {
-      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
-const res = await axios.post(`${API_BASE_URL}/web/${role.toLowerCase()}/login`, {
+     const res = await axios.post(`/web/${role.toLowerCase()}/login`, {
   email: email.trim(),
   password: password.trim(),
 });
-
-
-
       const user = res.data.user;
       localStorage.setItem("user", JSON.stringify(user));
-
-      if (user.role === "user") navigate("/layout");
-      else if (user.role === "creator") navigate("/layout");
-      else if (user.role === "organizer") navigate("/layout");
-      else navigate("/layout");
+       navigate("/layout");
     } catch (error: any) {
-      setErrors({ password: error.response?.data?.message || "Network error" });
+     setErrors({
+  email: error.response?.data?.message.includes("email") ? error.response.data.message : "",
+  password: error.response?.data?.message.includes("password") ? error.response.data.message : "",
+});
+
     }
   };
 
