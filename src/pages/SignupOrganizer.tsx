@@ -75,7 +75,7 @@ export default function SignupOrganizer() {
       }
 
       const response = await axios.post(
-        "http://185.194.216.146:81/web/organizer/register",
+        "http://185.194.216.146:82/web/organizer/register",
         data,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

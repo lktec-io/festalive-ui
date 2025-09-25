@@ -63,7 +63,7 @@ export default function SignupUser() {
         data.append("profilePic", defaultProfilePic); // fallback default
       }
 
-      await axios.post("http://185.194.216.146:81/web/user/register", data, {
+      await axios.post("http://185.194.216.146:82/web/user/register", data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

@@ -89,7 +89,7 @@ Object.entries(formData).forEach(([key, value]) => {
 });
 
 const response = await axios.post(
-  "http://185.194.216.146:81/web/creator/register",
+  "http://185.194.216.146:82/web/creator/register",
   data,
   { headers: { "Content-Type": "multipart/form-data" } }
 );
