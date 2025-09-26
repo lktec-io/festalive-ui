@@ -2,6 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Shimmer from "../components/Shimmer.tsx";
 import { Layout } from "../Layout.tsx";
+import  AddEvents  from "../components/AddEvents.tsx";
+import { AddedEvents } from "../components/AddedEvents.tsx";
+
 
 const Auth = lazy(() => import("../pages/AuthPage.tsx"));
 const SelectUserType = lazy(()=> import('../pages/SelectUserType.tsx'));
@@ -17,6 +20,7 @@ const Events = lazy(() => import("../pages/Events.tsx"));
 const Bookings = lazy(() => import("../pages/Bookings.tsx"));
 const NotFound = lazy(() => import("../pages/NotFound.tsx"));
 
+
 export default function Router() {
   return (
     <Suspense fallback={<Shimmer />}>
@@ -27,7 +31,9 @@ export default function Router() {
         <Route path="/signup/user" element={<UserSignup />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/login/:role" element={<Login/>} />
-        <Route path="/signup" element={<Signup/>} />     
+        <Route path="/signup" element={<Signup/>} /> 
+        <Route path="/events" element={<AddEvents />}/>   
+        <Route path="/added" element={<AddedEvents />}/>  
         <Route path="/layout" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="tickets" element={<Tickets />} />

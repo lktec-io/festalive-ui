@@ -7,7 +7,7 @@ export default function Events() {
     
       <div className="inner-components">
         <div className="other-card-1">
-          <EventsTable />
+          <EventsTable />         
         </div>
       </div>
   

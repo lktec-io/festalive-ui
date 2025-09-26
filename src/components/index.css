@@ -366,3 +366,69 @@ a {
   background: rgba(255, 255, 255, 0.7);
   transition: background 0.2s ease;
 }
+
+
+/* //----Addedevents------// */
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.layout-content {
+  flex: 1;
+  padding: 1rem;
+  background: #fafafa;
+  overflow-y: auto;  
+}
+
+.dashboard-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #222;
+}
+
+.loading-text {
+  color: #555;
+  font-size: 1rem;
+}
+
+.no-events {
+  color: #777;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.event-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+.event-card h3 {
+  margin-bottom: 0.6rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #4f46e5;
+}
+
+.event-card p {
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+

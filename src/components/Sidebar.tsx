@@ -17,7 +17,7 @@ export const SidebarData = [
     icon: "../assets/book-check-black.svg",
     iconactive: "../assets/book-check.svg",
     title: "My Events",
-    link: "/events",
+    link: "/added",
   },
   {
     id: 3,

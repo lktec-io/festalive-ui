@@ -58,10 +58,9 @@ export const Card = () => {
 export const ExtraCard = () => {
   return (
     <div className="card-container">
-      <Link to="/" className="card">
+      <Link to="/events" className="card">
         <div className="card-content">
           <img src="../assets/add.svg" alt="" width={32} height={32} />
-
           <h3>Add Event</h3>
         </div>
       </Link>
