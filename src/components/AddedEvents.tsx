@@ -23,6 +23,27 @@ export const AddedEvents = () => {
     fetchEvents();
   }, []);
 
+ const handleDelete = async (id: string | number) => {
+  const confirmDelete = confirm("Are you sure you want to delete this event?");
+  if (!confirmDelete) return;
+
+  try {
+    console.log("Deleting event with id:", id);
+    await axios.delete(`http://185.194.216.146:82/web/event/${id}`);
+    
+    // Update UI immediately
+    setEvents(events.filter(event => event.id !== id)); // tumia id sahihi
+    alert("Event deleted successfully!");
+  } catch (error: any) {
+    console.error("Error deleting event:", error);
+    if (error.response && error.response.status === 404) {
+      alert("Event not found on server.");
+    } else {
+      alert("Failed to delete event.");
+    }
+  }
+};
+
   return (
     <div className="layout-container">
       <Sidebar />
@@ -41,6 +62,12 @@ export const AddedEvents = () => {
                 <p><strong>Location:</strong> {event.location}</p>
                 <p><strong>Description:</strong> {event.description}</p>
                 {event.phone && <p><strong>Phone:</strong> {event.phone}</p>}
+                <button
+                  className="delete-btn"
+                  onClick={() => handleDelete(event.id)}
+                >
+                  Delete Event
+                </button>
               </div>
             ))}
           </div>

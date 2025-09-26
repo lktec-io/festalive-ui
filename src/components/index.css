@@ -369,66 +369,103 @@ a {
 
 
 /* //----Addedevents------// */
+/* index.css */
+
+/* Layout container */
 .layout-container {
   display: flex;
   min-height: 100vh;
-  background: #f8f9fa;
+  background-color: #f4f6f8;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* Sidebar - assume your sidebar already has its own styles */
 .layout-content {
   flex: 1;
-  padding: 1rem;
-  background: #fafafa;
-  overflow-y: auto;  
+  padding: 30px;
+  overflow-y: auto;
 }
 
+/* Dashboard title */
 .dashboard-title {
-  font-size: 1.8rem;
+  font-size: 28px;
   font-weight: 600;
-  margin-bottom: 1.5rem;
-  color: #222;
+  margin-bottom: 20px;
+  color: #333;
 }
 
-.loading-text {
-  color: #555;
-  font-size: 1rem;
-}
-
+/* Loading and empty states */
+.loading-text,
 .no-events {
-  color: #777;
-  font-size: 1rem;
-  font-style: italic;
+  font-size: 18px;
+  color: #555;
+  text-align: center;
+  margin-top: 50px;
 }
 
+/* Events grid */
 .events-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  gap: 20px;
 }
 
+/* Event card */
 .event-card {
-  background: #fff;
+  background-color: #f9dfccd1;
   border-radius: 12px;
-  padding: 1.2rem 1.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+border: 1px solid #f1cbafe0;
 }
 
 .event-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
+/* Event card content */
 .event-card h3 {
-  margin-bottom: 0.6rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #4f46e5;
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #1d3557;
 }
 
 .event-card p {
-  margin: 0.3rem 0;
-  font-size: 0.95rem;
-  color: #444;
+  font-size: 14px;
+  color: #555;
+  margin: 4px 0;
+}
+
+.event-card strong {
+  color: #1d3557;
+}
+
+/* Delete button */
+.delete-btn {
+  display: inline-block;
+  background-color: #e63946;
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: #d62828;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .events-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
 }
 
