@@ -30,7 +30,6 @@ export const AddedEvents = () => {
   try {
     console.log("Deleting event with id:", id);
     await axios.delete(`http://185.194.216.146:82/web/event/${id}`);
-    
     // Update UI immediately
     setEvents(events.filter(event => event.id !== id)); // tumia id sahihi
     alert("Event deleted successfully!");
@@ -43,7 +42,6 @@ export const AddedEvents = () => {
     }
   }
 };
-
   return (
     <div className="layout-container">
       <Sidebar />

@@ -382,17 +382,25 @@ a {
 /* Sidebar - assume your sidebar already has its own styles */
 .layout-content {
   flex: 1;
-  padding: 30px;
+  padding: 2px;
   overflow-y: auto;
 }
 
 /* Dashboard title */
 .dashboard-title {
   font-size: 28px;
-  font-weight: 600;
+  font-weight:500;
   margin-bottom: 20px;
   color: #333;
+  background-color: #f8e3d3ae;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(42, 42, 42, 0.1);
+  padding: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #f9d2b7;
+
 }
+
 
 /* Loading and empty states */
 .loading-text,
@@ -407,28 +415,28 @@ a {
 .events-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  gap: 15px;
 }
-
 /* Event card */
 .event-card {
-  background-color: #f9dfccd1;
+  background-color: #f8e3d3c5;
   border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 15px rgba(37, 37, 37, 0.1);
   padding: 20px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-border: 1px solid #f1cbafe0;
+  transition: transform 0.3s ease, box-shadow 0.2s ease;
+border: 1px solid #f1caafcc;
 }
 
 .event-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(84, 83, 83, 0.15);
 }
 
 /* Event card content */
 .event-card h3 {
   font-size: 20px;
-  margin-bottom: 10px;
+  font-weight: 600;
+  margin-bottom: 15px;
   color: #1d3557;
 }
 
@@ -439,17 +447,18 @@ border: 1px solid #f1cbafe0;
 }
 
 .event-card strong {
+  padding-top: 10px;
   color: #1d3557;
 }
 
 /* Delete button */
 .delete-btn {
   display: inline-block;
-  background-color: #e63946;
+  background-color: #e63947f1;
   color: #fff;
   font-weight: 500;
   border: none;
-  padding: 10px 16px;
+  padding: 8px 10px;
   border-radius: 8px;
   cursor: pointer;
   margin-top: 12px;
@@ -457,8 +466,8 @@ border: 1px solid #f1cbafe0;
 }
 
 .delete-btn:hover {
-  background-color: #d62828;
-  transform: scale(1.05);
+  background-color: #d62828eb;
+  transform: scale(1.02);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
