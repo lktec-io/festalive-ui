@@ -23,25 +23,29 @@ export const AddedEvents = () => {
     fetchEvents();
   }, []);
 
- const handleDelete = async (id: string | number) => {
+const handleDelete = async (id: number) => {
   const confirmDelete = confirm("Are you sure you want to delete this event?");
   if (!confirmDelete) return;
 
   try {
     console.log("Deleting event with id:", id);
-    await axios.delete(`http://185.194.216.146:82/web/event/${id}`);
-    // Update UI immediately
-    setEvents(events.filter(event => event.id !== id)); // tumia id sahihi
-    alert("Event deleted successfully!");
+    const response = await axios.delete(`http://185.194.216.146:82/web/event/${id}`);
+    
+    // Angalia response kama imefanikiwa
+    if (response.status === 200) {
+      setEvents((prevEvents) => prevEvents.filter((event) => event.id !== id));
+      alert("Event deleted successfully!");
+    }
   } catch (error: any) {
     console.error("Error deleting event:", error);
-    if (error.response && error.response.status === 404) {
+    if (error.response?.status === 404) {
       alert("Event not found on server.");
     } else {
       alert("Failed to delete event.");
     }
   }
 };
+
   return (
     <div className="layout-container">
       <Sidebar />
